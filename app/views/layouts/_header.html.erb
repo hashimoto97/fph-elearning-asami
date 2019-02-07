@@ -1,0 +1,37 @@
+<nav class="navbar bg-primary navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="#">Aels</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        <li class="nav-item ">
+            <%= link_to "Sign up","#", class:"nav-link" %>
+        </li>
+        <li class="nav-item">
+            <%= link_to "Log in","#", class:"nav-link" %>
+        </li>
+        <li class="nav-item ">
+            <%= link_to "Dashbord","#", class:"nav-link" %>
+        </li>
+        <li class="nav-item">
+            <%= link_to "Categories","#", class:"nav-link" %>
+        </li>
+        <li class="nav-item">
+            <%= link_to "Members","#", class:"nav-link" %>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            User
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <%= link_to "Profile","#", class:"dropdown-item" %>
+                <%= link_to "Settings","#", class:"dropdown-item" %>
+                <%= link_to "Log out","#", class:"dropdown-item" %>
+                <%= link_to "Manage categories","#", class:"dropdown-item" %>
+            </div>
+        </li>
+        </ul>
+    </div>
+</nav>
