@@ -30,7 +30,7 @@
                         <%= current_user.name %>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <%= link_to "Profile","#", class:"dropdown-item" %>
+                        <%= link_to "Profile",current_user, class:"dropdown-item" %>
                         <%= link_to "Settings","#", class:"dropdown-item" %>
                         <%= link_to "Log out",logout_path,method: :delete, class:"dropdown-item" %>
                         <%= link_to "Manage categories","#", class:"dropdown-item" %>
