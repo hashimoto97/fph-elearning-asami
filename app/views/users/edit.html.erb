@@ -1,0 +1,44 @@
+<% provide :title,"Settings" %>
+<div class="row">
+    <div class="col-md-6 mt-3 mb-5 mx-auto">
+        <h1 class="text-center">Settings</h1>
+
+        <%= form_for @user do |f| %>
+        
+            <div class="form-group">
+                <%= f.label :name %>
+
+                <%= f.text_field :name,class: "form-control" %>
+            </div>
+            <% if @user.errors.messages[:name].any? %>
+                <small class="text-danger"><%= :name.capitalize %> <%= @user.errors.messages[:name].first %></small>
+            <% end %>
+            <div class="form-group">
+                <%= f.label :email %>
+
+                <%= f.text_field :email,class: "form-control" %>
+            </div>
+            <% if @user.errors.messages[:email].any? %>
+                <small class="text-danger"><%= :email.capitalize %> <%= @user.errors.messages[:email].first %></small>
+            <% end %>
+
+            <div class="form-group">
+                <%= f.label :password %>
+                <%= f.password_field :password, class: "form-control" %>
+            </div>
+            <% if @user.errors.messages[:password].any? %>
+                <small class="text-danger"><%= :password.capitalize %> <%= @user.errors.messages[:password].first %></small>
+            <% end %>
+
+            <div class="form-group">
+                <%= f.label :password_confirmation %>
+                <%= f.password_field :password_confirmation, class: "form-control" %>
+            </div>
+            <% if @user.errors.messages[:password_confirmation].any? %>
+                <small class="text-danger"><%= :password_confirmation.capitalize %> <%= @user.errors.messages[:password_confirmation].first %></small>
+            <% end %>
+
+            <%= f.submit "Update",class: "btn btn-primary btn-block" %>
+        <% end %>
+    </div>
+</div>
