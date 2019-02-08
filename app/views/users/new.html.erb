@@ -6,7 +6,6 @@
 
         <%= form_for @user do |f| %>
         
-
             <div class="form-group">
                 <%= f.label :name %>
 
@@ -37,9 +36,8 @@
                 <%= f.password_field :password_confirmation, class: "form-control" %>
             </div>
             <% if @user.errors.messages[:password_confirmation].any? %>
-                <small class="text-danger"><%= :confirmation.capitalize %> <%= @user.errors.messages[:confirmation].first %></small>
+                <small class="text-danger"><%= :password_confirmation.capitalize %> <%= @user.errors.messages[:password_confirmation].first %></small>
             <% end %>
-
 
             <%= f.submit "Create an account",class: "btn btn-primary btn-block" %>
         <% end %>
