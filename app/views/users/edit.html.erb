@@ -4,11 +4,9 @@
         <h1 class="text-center">Settings</h1>
 
         <%= form_for @user do |f| %>
-            <div class="avatar">
+            <div class="avatar m-auto">
                 <% if @user.image? %>
-                    <div>
-                        <%= image_tag(@user.image.url, class: "avatar") %>
-                    </div>
+                    <%= image_tag(@user.image.url) %>
                 <% end %>
             </div>
             <div class="form-group">
