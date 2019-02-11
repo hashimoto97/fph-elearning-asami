@@ -7,6 +7,8 @@
             <div class="avatar m-auto">
                 <% if @user.image? %>
                     <%= image_tag(@user.image.url) %>
+                <% else %>
+                    <%= image_tag("default.png") %>
                 <% end %>
             </div>
             <div class="form-group">
