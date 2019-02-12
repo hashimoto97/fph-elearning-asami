@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_login,only: [:index,:show]
+
   def index
     @users=User.paginate(page: params[:page],per_page: 10)
   end
@@ -35,9 +37,31 @@ class UsersController < ApplicationController
       render "edit"
     end
   end
-  
+
+  def following
+    @user=User.find(params[:id])
+    @title="Following"
+    @users=@user.following.paginate(page: params[:page],per_page: 10)
+    render "users/follow"
+  end
+
+  def followers
+    @user=User.find(params[:id])
+    @title="Followers"
+    @users=@user.followers.paginate(page: params[:page],per_page: 10)
+    render "users/follow"
+  end
+
   private
     def user_params
       params.require(:user).permit(:name,:email,:password,:password_confirmation,:image)
     end
+
+    def require_login
+      unless logged_in?
+        flash[:danger]="Please log in."
+        redirect_to login_url
+      end
+    end
+
 end
