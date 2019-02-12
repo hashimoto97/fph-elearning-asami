@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'relationships/create'
   root 'home#index'
   get '/signup' ,to: 'users#new'
   get '/login' ,to: 'sessions#new'
