@@ -7,15 +7,19 @@
 <div class="row">
     <% @users.each do |user| %>
         <div class="col-md-6 mb-2">
-            <div class="users_image">
-                <ul>
+            <div class="media">
+                <div class="users_image">
                     <% if user.image? %>
-                        <li><%= image_tag(user.image.url) %></li>
+                        <%= image_tag(user.image.url) %>
                     <% else %>
-                        <li><%= image_tag("default.png") %></li>
+                        <%= image_tag("default.png") %>
                     <% end %>
-                    <%= link_to user.name,user_path(user.id) %>
-                </ul>
+                </div>
+                <div class="media-body">
+                    <h5 class="mt-0">
+                        <%= link_to user.name,user_path(user.id) %>
+                    </h5>
+                </div>
             </div>
         </div>
     <% end %>
