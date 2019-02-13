@@ -43,9 +43,6 @@ class UsersController < ApplicationController
     @title="Following"
     @users=@user.following.paginate(page: params[:page],per_page: 10)
     render "users/follow"
-    if @user.active_relationships.count == 0
-      flash[:danger]="No following."
-    end
   end
 
   def followers
@@ -53,9 +50,6 @@ class UsersController < ApplicationController
     @title="Followers"
     @users=@user.followers.paginate(page: params[:page],per_page: 10)
     render "users/follow"
-    if @user.passive_relationships.count == 0
-      flash[:danger]="No followers"
-    end
   end
 
   private

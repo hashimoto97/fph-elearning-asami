@@ -22,6 +22,14 @@
             </div>
         <% end %>
 
+        <% unless @user.active_relationships.any? %>
+            <p>No following.</p>
+        <% end %>
+        <% unless @user.passive_relationships.any? %>
+            <p>No follower.</p> 
+        <% end %>
+
+
         <div class="paginate">
             <%= will_paginate %>
         </div>
