@@ -5,30 +5,26 @@
         <h3><%= @title %></h3>
         <hr>
 
-        <% @users.each do |user| %>
-            <div class="media mb-3">
-                <div class="users_image mr-3">
-                    <% if user.image? %>
-                        <%= image_tag(user.image.url) %>
-                    <% else %>
-                        <%= image_tag("default.png") %>
-                    <% end %>
+        <% if @users.any? %>
+            <% @users.each do |user| %>
+                <div class="media mb-3">
+                    <div class="users_image mr-3">
+                        <% if user.image? %>
+                            <%= image_tag(user.image.url) %>
+                        <% else %>
+                            <%= image_tag("default.png") %>
+                        <% end %>
+                    </div>
+                    <div class="media-body align-self-center">
+                        <h5 class="mt-0">
+                            <%= link_to user.name,user %>
+                        </h5>
+                    </div>
                 </div>
-                <div class="media-body align-self-center">
-                    <h5 class="mt-0">
-                        <%= link_to user.name,user %>
-                    </h5>
-                </div>
-            </div>
+            <% end %>
+        <% else %>
+            <p>Nothing.</p>
         <% end %>
-
-        <% unless @user.active_relationships.any? %>
-            <p>No following.</p>
-        <% end %>
-        <% unless @user.passive_relationships.any? %>
-            <p>No follower.</p> 
-        <% end %>
-
 
         <div class="paginate">
             <%= will_paginate %>
