@@ -1,0 +1,33 @@
+<%= render "users/user_info" %>
+
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <h3><%= @title %></h3>
+        <hr>
+
+        <% if @users.any? %>
+            <% @users.each do |user| %>
+                <div class="media mb-3">
+                    <div class="users_image mr-3">
+                        <% if user.image? %>
+                            <%= image_tag(user.image.url) %>
+                        <% else %>
+                            <%= image_tag("default.png") %>
+                        <% end %>
+                    </div>
+                    <div class="media-body align-self-center">
+                        <h5 class="mt-0">
+                            <%= link_to user.name,user %>
+                        </h5>
+                    </div>
+                </div>
+            <% end %>
+        <% else %>
+            <p>Nothing.</p>
+        <% end %>
+
+        <div class="paginate">
+            <%= will_paginate %>
+        </div>
+    </div>
+</div>
