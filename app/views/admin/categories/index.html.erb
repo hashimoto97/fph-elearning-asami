@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <span>Admin | Categories</span>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <a class="btn btn-sm btn-success" href="/admin/categories/new">Add category</a>
+                </div>
+            </div>
+        </div>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th class="col-xs-3">Title</th>
+                    <th class="col-xs-5">Description</th>
+                    <th class="col-xs-1 text-center">Words</th>
+                    <th class="col-xs-2">Action</th>
+                </tr>
+            </tbody>
+            <% @categories.each do |category| %>
+                <tr>
+                    <td><%= link_to category.title,"#" %></td>
+                    <td><%= link_to category.description %></td>
+                    <td class="text-center">#</td>
+                    <td>
+                        <%= link_to "Add word","#",class:"btn btn-primary" %>
+                        <%= link_to "Edit","#",class:"btn btn-warning" %>
+                        <%= link_to "Remove","#" %>
+                    </td>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+    <div class="paginate mt-4">
+        <%= will_paginate %>
+    </div>
+</div>
