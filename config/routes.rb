@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'relationships/create'
   root 'home#index'
   get '/signup' ,to: 'users#new'
   get '/login' ,to: 'sessions#new'
@@ -11,6 +10,10 @@ Rails.application.routes.draw do
     member do
       get :following,:followers
     end
+  end
+
+  namespace :admin do
+    resources :categories, only:[:index,:new,:create]
   end
 
   resources :relationships,only:[:create,:destroy]
