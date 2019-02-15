@@ -26,8 +26,8 @@
                     <td class="text-center">#</td>
                     <td>
                         <%= link_to "Add word","#",class:"btn btn-primary" %>
-                        <%= link_to "Edit","#",class:"btn btn-warning" %>
-                        <%= link_to "Remove","#" %>
+                        <%= link_to "Edit",edit_admin_category_path(category.id),class:"btn btn-warning" %>
+                        <%= link_to "Remove",admin_category_path(category.id),method: :delete %>
                     </td>
                 </tr>
             <% end %>
