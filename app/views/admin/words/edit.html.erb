@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <span>Admin | <%= @category.title %> - Words</span>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <%= link_to "Back",admin_category_words_path(@category.id),class:"btn btn-sm" %>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mt-3 mb-5 mx-auto">
+            <%= form_for [:admin,@category,@word] do |f| %>
+                <div class="form-group">
+                    <%= f.label :content, "Word" %>
+
+                    <%= f.text_field :content,class: "form-control" %>
+                </div>
+
+                <%= f.submit "Save Word",class: "btn btn-primary btn-block" %>
+            <% end %>
+        </div>
+    </div>
+</div>
