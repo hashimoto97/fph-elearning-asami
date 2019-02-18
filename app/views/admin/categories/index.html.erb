@@ -21,11 +21,11 @@
             </tbody>
             <% @categories.each do |category| %>
                 <tr>
-                    <td><%= link_to category.title,"#" %></td>
-                    <td><%= link_to category.description %></td>
-                    <td class="text-center">#</td>
+                    <td><%= link_to category.title,admin_category_words_path(category.id) %></td>
+                    <td><%= category.description %></td>
+                    <td class="text-center"><%= category.words.count %></td>
                     <td>
-                        <%= link_to "Add word","#",class:"btn btn-primary" %>
+                        <%= link_to "Add word",new_admin_category_word_path(category.id),class:"btn btn-primary" %>
                         <%= link_to "Edit",edit_admin_category_path(category.id),class:"btn btn-warning" %>
                         <%= link_to "Remove",admin_category_path(category.id),method: :delete %>
                     </td>
