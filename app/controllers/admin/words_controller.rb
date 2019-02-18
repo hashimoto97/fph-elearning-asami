@@ -6,6 +6,7 @@ class Admin::WordsController < ApplicationController
 
     def new
         @word=Word.new
+        @word.choices.build
         @category=Category.find(params[:category_id])
     end
 
@@ -49,6 +50,6 @@ class Admin::WordsController < ApplicationController
 
     private        
         def word_params
-            params.require(:word).permit(:content)
+            params.require(:word).permit(:content,choices_attributes: [:content,:correct])
         end
 end
