@@ -10,13 +10,32 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 mt-3 mb-5 mx-auto">
+                <div class="col-md-6 mt-3 mb-5 mx-auto">
             <%= form_for [:admin,@category,@word] do |f| %>
-                <div class="form-group">
-                    <%= f.label :content, "Word" %>
-
-                    <%= f.text_field :content,class: "form-control" %>
+                <div class="row mb-3">
+                    <div class="col-sm-2">
+                        <%= f.label :content, "Word" %>
+                    </div>
+                    <div class="col-sm-10">
+                        <%= f.text_field :content,class: "form-control" %>
+                    </div>
                 </div>
+
+                <%= f.fields_for :choices do |b| %>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <%= b.label :content, "Choices" %>
+                            </div>
+                            <div class="col-sm-6">
+                                <%= b.text_field :content, class: "form-control" %>
+                            </div>
+                            <div class="col-sm-4">
+                                <%= b.label :correct %> <%= b.check_box :correct %>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
 
                 <%= f.submit "Save Word",class: "btn btn-primary btn-block" %>
             <% end %>
