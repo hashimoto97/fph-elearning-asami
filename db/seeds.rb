@@ -11,6 +11,12 @@ User.create!(name: "bb",
     )
 end
 
+30.times do |a|
+    Category.create!(
+    title: Faker::Science.element,
+    )
+end
+
 users = User.all
 user  = users.first
 following = users[2..50]
