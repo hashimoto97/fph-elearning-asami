@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <h5 class="card-title"><%= category.title %></h5>
                     <p class="card-text"><%= category.description %></p>
-                    <%= link_to "Learn","#",class:"btn btn-primary" %>
+                    <%= button_to "Learn" ,lessons_path,params: {category_id: category.id}, class:"btn btn-primary" %>
                 </div>
             </div>
         </div>
