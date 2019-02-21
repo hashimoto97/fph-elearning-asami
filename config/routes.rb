@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   post '/login' ,to: 'sessions#create'
   delete '/logout',to: 'sessions#destroy'
   get '/categories',to: 'categories#index'
-  get '/answers/new',to: 'answers#new'
   resources :users,except: :new
   resources :lessons
 
@@ -17,8 +16,12 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :categories do 
-      resources :words
+      resources :words   
     end
+  end
+
+  resources :categories do
+    resources :answers
   end
 
   resources :relationships,only:[:create,:destroy]
