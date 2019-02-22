@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-sm-8 mx-auto">
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-6 mt-3">
+                <h1><%= @category.title %></h1>
+            </div>
+            <div class="col-sm-6 text-right">
+                <h3 class="text-muted"><span class="text-warning"> # of <%= @words.count %></h3>
+            </div>
+        </div>
+
+        <div class="card p-3 mb-3">
+            <h2 class="text-warning text-center"><%= @word.content %></h2>
+            <div class="col-md-6 mt-3 mb-3 mx-auto">
+                <% @choices.each do |choice| %>
+                    <div class="mb-2 text-center">
+                        <%= button_to choice.content ,category_answers_path,params: {word_id: @word.id,choice_id: choice.id}, class:"btn btn-outline-dark" %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
