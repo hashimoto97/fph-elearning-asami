@@ -5,14 +5,19 @@ class AnswersController < ApplicationController
     lesson=@category.lessons.find_by(user_id:current_user.id)
     
     @words.each do |word|
-      unless lesson.answers.pluck.include?(word.id)
+      unless lesson.answers.pluck(:word_id).include?(word.id)
         @word=word
         break
       end
     end
-
-    @choices=@word.choices
+    
+    if @word.nil? 
+        redirect_to categories_url
+    else
+        @choices=@word.choices
+    end
   end
+
 
   def create
     category=Category.find(params[:category_id])
