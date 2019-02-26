@@ -1,0 +1,39 @@
+<div class="container">
+<div class="row">
+    <div class="col-sm-8 col-center">
+        <div class="row" style="margin-bottom: 20px;">
+            <div class="col-sm-6 mt-3">
+                <h1><%= @category.title %></h1>
+            </div>
+            <div class="col-sm-6 text-right">
+                <h3 class="text-muted mt-3">Result: # of <%= @words.count %></h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Word</th>
+                        <th scope="col">Your Answer</th>
+                        <th scope="col">Correct Answer</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <% @words.zip(@choice_answers,@choice_corrects).each do |word,choice_answer,choice_correct| %>
+                    <tr>
+                        <td><%= word.content %></td>       
+                        <td><%= choice_answer.content %></td>
+                        <td><%= choice_correct.content %></td> 
+                        <% if choice_answer.content == choice_correct.content %>
+                            <td><i class="far fa-check-circle my-green"></i></td>
+                        <% else %>
+                            <td><i class="far fa-times-circle my-red"></i></td>
+                        <% end %>
+                    </tr>
+                <% end %>
+            </table>
+        </div>
+    </div>
+</div>
+</div>

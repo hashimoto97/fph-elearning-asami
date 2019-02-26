@@ -12,7 +12,7 @@ class AnswersController < ApplicationController
     end
     
     if @word.nil? 
-        redirect_to categories_url
+        redirect_to lesson_path(params[:category_id])
     else
         @choices=@word.choices
     end
