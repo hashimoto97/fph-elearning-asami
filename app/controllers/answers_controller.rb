@@ -4,7 +4,10 @@ class AnswersController < ApplicationController
     @words=@category.words
     lesson=@category.lessons.find_by(user_id:current_user.id)
     
+    x = 0
     @words.each do |word|
+      x = x + 1
+      @y = x
       unless lesson.answers.pluck(:word_id).include?(word.id)
         @word=word
         break

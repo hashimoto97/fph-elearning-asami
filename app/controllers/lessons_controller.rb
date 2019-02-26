@@ -12,7 +12,9 @@ class LessonsController < ApplicationController
     @choice_corrects=@choices.where(correct: 1)
     @lesson=@category.lessons.find_by(user_id:current_user.id)
     @answers=@lesson.answers
+    
     @choice_answers=Choice.where(id: @answers.pluck(:choice_id))
+    @count=@lesson.choices.where(correct: 1)
   end
 end
 
