@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  get 'results/index'
   root 'home#index'
   get '/signup' ,to: 'users#new'
   get '/login' ,to: 'sessions#new'
   post '/login' ,to: 'sessions#create'
   delete '/logout',to: 'sessions#destroy'
+  get 'dashboard/index'
   resources :users,except: :new
   resources :lessons
 
