@@ -16,8 +16,8 @@
                 <div class="text-gray mb-15"><%= @user.email %></div>
                 
                 <div class="mt-3 mb-3">
-                    <%= link_to "View profile",user_url(id:current_user.id),class:"btn btn-warning btn-sm" %>
-                    <%= link_to "Update profile",edit_user_url(id:current_user.id),class:"btn btn-primary btn-sm" %>
+                    <%= link_to "View profile",user_path(id:current_user.id),class:"btn btn-warning btn-sm" %>
+                    <%= link_to "Update profile",edit_user_path(id:current_user.id),class:"btn btn-primary btn-sm" %>
                 </div>
             </div>
         </div>
