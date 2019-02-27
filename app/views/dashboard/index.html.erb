@@ -1,0 +1,59 @@
+<div class="container py-5">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <div class="avatar">
+                        <% if @user.image? %>
+                            <%= image_tag(@user.image.url) %>
+                        <% else %>
+                            <%= image_tag("default.png") %>
+                        <% end %>
+                    </div>
+                </div>
+                
+                <h3 class="mb-0"><%= @user.name %></h3>
+                <div class="text-gray mb-15"><%= @user.email %></div>
+                
+                <div class="mt-3">
+                    <%= link_to "View profile","#",class:"btn btn-warning btn-sm" %>
+                    <%= link_to "Update profile","#",class:"btn btn-primary btn-sm" %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            <div class="text-center">
+                <div class="d-inline-block mr-4">
+                    <h5 class="d-inline"><%= @user.active_relationships.count %></h5>
+                    <span>following</span>
+                </div>
+                <div class="d-inline-block">
+                    <h5 class="d-inline"><%= @user.passive_relationships.count %></h5>
+                    <span>followers</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            <%= link_to "words learned","#",class:"btn btn-primary" %>
+        </div>
+    </div>
+
+    <div class="col-sm-8">
+        <div class="card activity-feed">
+            <div class="card-header">
+                <strong class="heading">Activity feed</strong>
+            </div>
+            <div class="card-body">
+                <div class="media mb-4">
+                    <div class="avatar square"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

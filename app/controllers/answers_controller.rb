@@ -4,7 +4,8 @@ class AnswersController < ApplicationController
     @words=@category.words
     lesson=@category.lessons.find_by(user_id:current_user.id)
     
-    @words.each do |word|
+    @words.each_with_index do |word,x|
+      @proceed = x + 1
       unless lesson.answers.pluck(:word_id).include?(word.id)
         @word=word
         break
@@ -12,7 +13,7 @@ class AnswersController < ApplicationController
     end
     
     if @word.nil? 
-        redirect_to categories_url
+        redirect_to lesson_path(lesson.id)
     else
         @choices=@word.choices
     end
