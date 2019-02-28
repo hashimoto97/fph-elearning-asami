@@ -6,7 +6,13 @@
                 <div class="card-body">
                     <h5 class="card-title"><%= category.title %></h5>
                     <p class="card-text"><%= category.description %></p>
-                    <%= button_to "Learn" ,lessons_path,params: {category_id: category.id}, class:"btn btn-primary" %>
+
+                    <% if current_user.lessons.find_by(category_id: category.id) %>
+                        <% button_text = "Result" %>
+                    <% else %>
+                        <% button_text = "Learn" %>
+                    <% end %>
+                    <%= button_to button_text ,lessons_path,params: {category_id: category.id}, class:"btn btn-primary" %>
                 </div>
             </div>
         </div>
