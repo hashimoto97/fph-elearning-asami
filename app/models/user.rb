@@ -27,6 +27,7 @@ class User < ApplicationRecord
     has_many :answers,through: :lessons
     has_many :choices,through: :answers
     has_many :words,through: :choices
+    has_many :activities
     
     def follow(other_user)
         following << other_user

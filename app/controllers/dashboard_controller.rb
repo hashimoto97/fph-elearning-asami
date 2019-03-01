@@ -3,6 +3,7 @@ class DashboardController < ApplicationController
 
   def index
     @user=User.find_by(id:current_user.id)
+    @activities=@user.activities
   end
 
   def words

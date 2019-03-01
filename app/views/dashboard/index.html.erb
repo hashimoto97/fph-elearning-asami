@@ -27,22 +27,35 @@
                     <strong class="heading">Activity feed</strong>
                 </div>
                 <div class="card-body">
-                    <div class="media">
-                        <div class="avatar mr-3" style="width: 70px; height:70px;">
-                            <%= image_tag("default.png") %>
+                    <% @activities.each do |activity| %>
+
+                        
+                        <div class="media">
+                            <% if activity.action_type == "Lesson" %>
+                                <% lesson=activity.action %>
+                                <div class="avatar mr-3" style="width: 70px; height:70px;">
+                                    <%= image_tag("default.png") %>
+                                </div>
+                                <div class="media-body">
+                                    <%= link_to activity.user.name,user_path(id:current_user.id) %>
+                                    learned <%= lesson.result.count %>
+                                    of <%= lesson.category.words.count %>
+                                    in<%= link_to lesson.category.title,lesson_path(lesson.id),class:"badge badge-primary" %>
+                                </div>
+                            <% else %>
+                                <% relationship=activity.action %>
+                                <div class="avatar mr-3" style="width: 70px; height:70px;">
+                                    <%= image_tag("default.png") %>
+                                </div>
+                                <div class="media-body">
+                                    <%= link_to activity.user.name,user_path(id:current_user.id) %>
+                                     followed <%= link_to relationship.followed.name,user_path(relationship.followed.id),class:"badge badge-secondary btn-sm" %>
+                                </div>
+                            <% end %>
                         </div>
-                        <div class="media-body">
-                        <%= link_to "You",user_path(id:current_user.id) %> learned <%= "#" %>of <%= "#" %>in<%= link_to "#","#",class:"badge badge-primary" %>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <div class="avatar mr-3" style="width: 70px; height:70px;">
-                            <%= image_tag("default.png") %>
-                        </div>
-                        <div class="media-body">
-                            <%= link_to "You",user_path(id:current_user.id) %> followed <%= link_to "#","#",class:"badge badge-secondary btn-sm" %>
-                        </div>
-                    </div>
+                    <% end %>
+                    <hr>
+
                 </div>
             </div>
         </div>
