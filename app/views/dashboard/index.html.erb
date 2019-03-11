@@ -1,91 +1,81 @@
-<div class="container py-5">
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="card text-center">
-                <div class="card-body mx-auto">
-                    <div class="avatar">
-                        <% if @user.image? %>
-                            <%= image_tag(@user.image.url) %>
+<div class="row mt-3 mb-3">
+    <div class="col-sm-4">
+        <div class="card text-center">
+            <div class="card-body mx-auto">
+                <div class="avatar">
+                    <% if @user.image? %>
+                        <%= image_tag(@user.image.url) %>
+                    <% else %>
+                        <%= image_tag("default.png") %>
+                    <% end %>
+                </div>
+            </div>
+            
+            <h3 class="mb-0"><%= @user.name %></h3>
+            <div class="text-gray mb-15"><%= @user.email %></div>
+            
+            <div class="mt-3 mb-3">
+                <%= link_to "View profile",user_path(id:current_user.id),class:"btn btn-warning btn-sm" %>
+                <%= link_to "Update profile",edit_user_path(id:current_user.id),class:"btn btn-primary btn-sm" %>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-body">
+                <div class="text-center">
+                    <div class="d-inline-block mr-4">
+                        <h5 class="d-inline"><%= @user.active_relationships.count %></h5>
+                        <span>following</span>
+                    </div>
+                    <div class="d-inline-block">
+                        <h5 class="d-inline"><%= @user.passive_relationships.count %></h5>
+                        <span>followers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-body mx-auto">
+                <%= link_to "words learned",words_path,class:"btn btn-primary btn-lg" %>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-8">
+        <div class="card activity-feed">
+            <div class="card-header">
+                <strong class="heading">Activity feed</strong>
+            </div>
+            <div class="card-body">
+                <% @activities.each do |activity| %>
+
+                    <div class="media">
+                        <% if activity.action_type == "Lesson" %>
+                            <% lesson=activity.action %>
+                            <div class="avatar mr-3" style="width: 70px; height:70px;">
+                                <%= image_tag("default.png") %>
+                            </div>
+                            <div class="media-body">
+                                <%= link_to activity.user.name,user_path(id:current_user.id) %>
+                                learned <%= lesson.result.count %>
+                                of <%= lesson.category.words.count %>
+                                in<%= link_to lesson.category.title,lesson_path(lesson.id),class:"badge badge-primary" %>
+                            </div>
                         <% else %>
-                            <%= image_tag("default.png") %>
+                            <% relationship=activity.action %>
+                            <div class="avatar mr-3" style="width: 70px; height:70px;">
+                                <%= image_tag("default.png") %>
+                            </div>
+                            <div class="media-body">
+                                <%= link_to activity.user.name,user_path(id:current_user.id) %>
+                                    followed <%= link_to relationship.followed.name,user_path(relationship.followed.id),class:"badge badge-secondary btn-sm" %>
+                            </div>
                         <% end %>
                     </div>
-                </div>
-                
-                <h3 class="mb-0"><%= @user.name %></h3>
-                <div class="text-gray mb-15"><%= @user.email %></div>
-                
-                <div class="mt-3 mb-3">
-                    <%= link_to "View profile",user_path(id:current_user.id),class:"btn btn-warning btn-sm" %>
-                    <%= link_to "Update profile",edit_user_path(id:current_user.id),class:"btn btn-primary btn-sm" %>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-8">
-            <div class="card activity-feed">
-                <div class="card-header">
-                    <strong class="heading">Activity feed</strong>
-                </div>
-                <div class="card-body">
-                    <% @activities.each do |activity| %>
+                <% end %>
+                <hr>
 
-                        
-                        <div class="media">
-                            <% if activity.action_type == "Lesson" %>
-                                <% lesson=activity.action %>
-                                <div class="avatar mr-3" style="width: 70px; height:70px;">
-                                    <%= image_tag("default.png") %>
-                                </div>
-                                <div class="media-body">
-                                    <%= link_to activity.user.name,user_path(id:current_user.id) %>
-                                    learned <%= lesson.result.count %>
-                                    of <%= lesson.category.words.count %>
-                                    in<%= link_to lesson.category.title,lesson_path(lesson.id),class:"badge badge-primary" %>
-                                </div>
-                            <% else %>
-                                <% relationship=activity.action %>
-                                <div class="avatar mr-3" style="width: 70px; height:70px;">
-                                    <%= image_tag("default.png") %>
-                                </div>
-                                <div class="media-body">
-                                    <%= link_to activity.user.name,user_path(id:current_user.id) %>
-                                     followed <%= link_to relationship.followed.name,user_path(relationship.followed.id),class:"badge badge-secondary btn-sm" %>
-                                </div>
-                            <% end %>
-                        </div>
-                    <% end %>
-                    <hr>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="card mt-4">
-                <div class="card-body">
-                    <div class="text-center">
-                        <div class="d-inline-block mr-4">
-                            <h5 class="d-inline"><%= @user.active_relationships.count %></h5>
-                            <span>following</span>
-                        </div>
-                        <div class="d-inline-block">
-                            <h5 class="d-inline"><%= @user.passive_relationships.count %></h5>
-                            <span>followers</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="card mt-4">
-                <div class="card-body mx-auto">
-                    <%= link_to "words learned",words_path,class:"btn btn-primary btn-lg" %>
-                </div>
             </div>
         </div>
     </div>
