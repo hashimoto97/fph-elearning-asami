@@ -17,6 +17,27 @@ end
     )
 end
 
+categories = Category.order(created_at: :desc).take(5)
+
+categories.each do |category|
+  5.times do
+    content = Faker::Lorem.unique.word
+    word = category.words.build(content: content)
+
+    nth = rand(0..2)
+
+    3.times do |i|
+      if i == nth
+        word.choices.build(content: content, correct: true)
+      else
+        word.choices.build(content: Faker::Lorem.word)
+      end
+    end
+
+    word.save!
+  end
+end
+
 users = User.all
 user  = users.first
 following = users[2..50]
